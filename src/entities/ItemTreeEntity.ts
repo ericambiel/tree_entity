@@ -5,31 +5,27 @@ import {
   Column,
   PrimaryGeneratedColumn,
   TreeChildren,
-  TreeParent, OneToMany,
+  TreeParent, OneToMany, ManyToOne,
+  JoinColumn
 } from 'typeorm';
-import {JoinColumn} from "typeorm/browser";
 
 @Entity('general_item')
 @Tree('closure-table', {
-  closureTableName: 'general_item', // puts "_closure" in generated table
-  ancestorColumnName: column => `${column.propertyName}_general_item`,
-  descendantColumnName: column =>
-    `${column.propertyName}_general_item_component`,
+  closureTableName: 'general_item_structural_tree', // puts "_closure" in generated table
+  ancestorColumnName: () => 'id_general_item',
+  descendantColumnName: () => 'id_general_item_child',
 })
 export default class ItemTreeEntity implements IItemDTO {
   @PrimaryGeneratedColumn({ name: 'id_general_item' })
   id: number;
 
-  @OneToMany(() => ItemTreeEntity, item => item.id)
-  @JoinColumn({ name: 'id_general_item_component' })
-  itemId: this[];
-
   @Column({ name: 'description' })
   description: string;
 
   @TreeParent()
-  item: this;
+  @JoinColumn({ name: 'id_general_item_parent', referencedColumnName: 'id' })
+  itemParent: this;
 
   @TreeChildren()
-  itemComponent: this[];
+  itemChildren: this[];
 }
