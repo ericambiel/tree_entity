@@ -1,0 +1,50 @@
+{
+  "ts-node": {
+    "files": true
+  },
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "lib": [
+      "ES2020"
+    ],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "ES2020",
+    "outDir": "./dist",
+    "rootDir": ".",
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "baseUrl": "./src",
+    "paths": {
+      "@dtos/*": [
+        "dtos/*"
+      ],
+      "@providers/*": [
+        "providers/*"
+      ],
+      "@entities/*": [
+        "entities/*"
+      ],
+      "@repositories/*": [
+        "repositories/*"
+      ],
+      "@libs/*": [
+        "libs/*"
+      ],
+      "@config/*": [
+        "config/*"
+      ],
+      "@helpers/*": [
+        "helpers/*"
+      ]
+    },
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "typeRoots": [
+      "./src/@types",
+      "./node_modules/@types"
+    ]
+  }
+}
