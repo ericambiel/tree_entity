@@ -1,5 +1,6 @@
 import database from '@config/database';
-import DatabaseNamingStrategy from "@libs/DatabaseNamingStrategy";
+// import DatabaseNamingStrategy from "@libs/DatabaseNamingStrategy";
+import {NameStrategyDataBase} from "@libs/NameStrategyDataBase";
 
 const databaseConfig = database();
 
@@ -21,6 +22,7 @@ module.exports = {
     ],
     migrationsDir: `./src/migrations`,
   },
-  namingStrategy: new DatabaseNamingStrategy(),
+  //namingStrategy: new DatabaseNamingStrategy(),
+  namingStrategy: new NameStrategyDataBase(),
   autoLoadEntities: true,
 };
