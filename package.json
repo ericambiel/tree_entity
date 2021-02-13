@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "class-transformer": "^0.3.2",
     "dotenv-safe": "^8.2.0",
     "mysql": "^2.18.1",
     "reflect-metadata": "^0.1.13",

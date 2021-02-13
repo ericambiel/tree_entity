@@ -119,3 +119,4 @@ dist
 package-lock.json
 .history
 .dist
+.idea

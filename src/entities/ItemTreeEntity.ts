@@ -7,6 +7,7 @@ import {
   TreeChildren,
   TreeParent
 } from 'typeorm';
+import {Exclude, Expose} from "class-transformer";
 
 @Entity('general_item')
 @Tree('closure-table', {
@@ -15,17 +16,36 @@ import {
   descendantColumnName: (column) => column.propertyName + '_child',
 })
 export default class ItemTreeEntity implements IItemDTO {
+  @Exclude()
   @PrimaryGeneratedColumn()
-  id_general_item: number; // Can't use property @PrimaryGeneratedColumn({ name: 'id_general_item' }), BUG!!!
+  private id_general_item: number; // Can't use property @PrimaryGeneratedColumn({ name: 'id_general_item' }), BUG!!!
 
   @Column({ name: 'description' })
   description: string;
 
+  @Exclude()
   @TreeParent()
-  parent: this;
+  private parent: this;
 
+  @Exclude()
   @TreeChildren()
-  children: this[];
+  private children: this[];
+
+
+  @Expose()
+  get id(): number {
+    return this.id_general_item;
+  }
+
+  @Expose()
+  get itemParent(): this {
+    return this.parent;
+  }
+
+  @Expose()
+  get itemChildren(): this[] {
+    return this.children;
+  }
 }
 
 // Não é possível usar { name: 'id_general_item' } em chave primaria, typeORM apresenta bug.

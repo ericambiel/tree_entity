@@ -3,7 +3,8 @@ import 'reflect-metadata';
 import { typeorm } from '@providers/index';
 import { container } from 'tsyringe';
 import ItemTreeRepository from './ItemTreeRepository';
-import ItemTreeEntity from "@entities/ItemTreeEntity";
+// import ItemTreeEntity from "@entities/ItemTreeEntity";
+import {classToPlain} from "class-transformer";
 
 describe('Teste Item Tree Repository', () => {
   let treeRepository: ItemTreeRepository;
@@ -23,40 +24,41 @@ describe('Teste Item Tree Repository', () => {
       });
   });
 
-  describe('Insert', () => {
-    it('should insert date on Entity Tree', async () => {
 
-      const item = new ItemTreeEntity();
-      item.description = "item1";
-      await treeRepository.save(item);
-
-      const item2 = new ItemTreeEntity();
-      item2.description = "item2";
-      item2.parent = item;
-      await treeRepository.save(item2);
-
-      const item3 = new ItemTreeEntity();
-      item3.description = "item3";
-      item3.parent = item;
-      await treeRepository.save(item3);
-
-      const item4 = new ItemTreeEntity();
-      item4.description = "item4";
-      item4.parent = item2;
-      await treeRepository.save(item4);
-
-      const item5 = new ItemTreeEntity();
-      item5.description = "Item5";
-      item5.parent = item2;
-      const result = await treeRepository.save(item5);
-
-      expect(result).toBeInstanceOf(ItemTreeEntity);
-    });
-  });
+  // describe('Insert', () => {
+  //   it('should insert date on Entity Tree', async () => {
+  //
+  //     const item = new ItemTreeEntity();
+  //     item.description = "item1";
+  //     await treeRepository.save(item);
+  //
+  //     const item2 = new ItemTreeEntity();
+  //     item2.description = "item2";
+  //     item2.parent = item;
+  //     await treeRepository.save(item2);
+  //
+  //     const item3 = new ItemTreeEntity();
+  //     item3.description = "item3";
+  //     item3.parent = item;
+  //     await treeRepository.save(item3);
+  //
+  //     const item4 = new ItemTreeEntity();
+  //     item4.description = "item4";
+  //     item4.parent = item2;
+  //     await treeRepository.save(item4);
+  //
+  //     const item5 = new ItemTreeEntity();
+  //     item5.description = "Item5";
+  //     item5.parent = item2;
+  //     const result = await treeRepository.save(item5);
+  //
+  //     expect(result).toBeInstanceOf(ItemTreeEntity);
+  //   });
+  // });
 
   describe('Select', () => {
     it('should get date on Entity Tree', async () => {
-      const result = await treeRepository.findTrees();
+      const result = classToPlain(await treeRepository.findTrees());
 
       expect(result).toBeInstanceOf(Array);
     });
