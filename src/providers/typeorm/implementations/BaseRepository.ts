@@ -15,6 +15,7 @@ import IRepository from '../IRepository';
  * @template Entity
  */
 export default abstract class BaseRepository<Interface, Entity>
+  // extends Repository<Entity>
   implements IRepository<Interface, Entity> {
   protected repository: Repository<Entity>;
 
@@ -25,6 +26,7 @@ export default abstract class BaseRepository<Interface, Entity>
    * @protected
    */
   protected constructor(entity: ClassType<Entity>) {
+    // super();
     this.repository = getRepository(entity);
   }
 
