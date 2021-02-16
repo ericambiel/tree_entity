@@ -1,7 +1,7 @@
-import ItemTreeEntity from "@entities/ItemTreeEntity";
+// import ItemTreeEntity from '@entities/ItemTreeEntity';
 
-export default interface IItemRepository
-  //extends ITreeRepository<IItemDTO, ItemTreeEntity> {
-  {
-  findTrees(): Promise<ItemTreeEntity[]>;
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export default interface IItemRepository {
+  // extends ITreeRepository<IItemDTO, ItemTreeEntity> {
+  // findTrees(): Promise<ItemTreeEntity[]>;
 }

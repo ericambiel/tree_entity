@@ -7,8 +7,8 @@ import {
   UpdateResult,
 } from 'typeorm';
 
+import ClassType from '@helpers/classType';
 import IRepository from '../IRepository';
-import ClassType from "@helpers/classType";
 
 /**
  * @template Interface

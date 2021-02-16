@@ -1,10 +1,9 @@
-import IRepository from '@providers/typeorm/IRepository';
-
 /**
  * @template Interface
  * @template EntityTree
  */
-export default interface ITreeRepository<Interface, EntityTree>
-  extends IRepository<Interface, EntityTree> {
-  findTrees(): Promise<EntityTree[]>;
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-empty-interface
+export default interface ITreeRepository<EntityTree> {
+  // findTrees(): Promise<EntityTree[]>;
 }

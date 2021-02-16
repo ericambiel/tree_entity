@@ -5,32 +5,32 @@ import {
   Column,
   PrimaryGeneratedColumn,
   TreeChildren,
-  TreeParent
+  TreeParent,
 } from 'typeorm';
-import { Expose } from "class-transformer";
+import { Expose } from 'class-transformer';
 
 @Entity('general_item')
 @Tree('closure-table', {
   closureTableName: 'general_item_structural_tree', // puts "_closure" automatically at final table name - Default NameStrategy
-  ancestorColumnName: (column) => column.propertyName,
-  descendantColumnName: (column) => column.propertyName + '_child',
+  ancestorColumnName: column => column.propertyName,
+  descendantColumnName: column => `${column.propertyName}_child`,
 })
 export default class ItemTreeEntity implements IItemDTO {
   @Expose({ name: 'id' })
   @PrimaryGeneratedColumn()
+  // eslint-disable-next-line camelcase
   private id_general_item: number; // Can't use property @PrimaryGeneratedColumn({ name: 'id_general_item' }), BUG!!!
 
   @Column({ name: 'description' })
   description: string;
 
-  // @Expose({ name: 'itemParent' })
+  @Expose({ name: 'itemParent' })
   @TreeParent()
   parent: this;
 
-  // @Expose({ name: 'itemChildren' })
+  @Expose({ name: 'itemChildren' })
   @TreeChildren()
   children: this[];
-
 
   // @Expose()
   // get id(): number {
